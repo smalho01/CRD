@@ -1,0 +1,43 @@
+allprojects {
+
+    apply plugin: 'idea'
+
+    apply plugin: 'checkstyle'
+    checkstyle {
+        toolVersion "8.11"
+    }
+
+    repositories {
+        mavenCentral()
+        jcenter{ url "https://jcenter.bintray.com/" }
+        maven { url 'https://oss.sonatype.org/service/local/repositories/snapshots/content' }
+        maven { url "https://jitpack.io" }
+        jcenter()
+    }
+
+
+}
+
+
+subprojects {
+
+    version = '0.0.1'
+    group = 'org.mitre'
+
+    apply plugin: 'java'
+
+    dependencies {
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.1.0'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
+        testCompileOnly 'junit:junit:4.12'
+        testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.1.0'
+    }
+
+    test {
+        exclude '**/*IntegrationTest*'
+        useJUnitPlatform()
+    }
+
+}
+
+

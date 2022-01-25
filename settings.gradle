@@ -1,0 +1,6 @@
+rootProject.name = 'crd'
+
+include 'resources'
+include 'operations'
+include 'server'
+
