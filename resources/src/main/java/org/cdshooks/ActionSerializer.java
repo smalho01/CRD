@@ -38,8 +38,6 @@ public class ActionSerializer extends StdSerializer<Action> {
         new ObjectMapper().readValue(jsonStrNew, HashMap.class);
     jgen.writeObjectField("resource", map);
 
-    jgen.writeStringField("resourceId", value.getResourceId());
-
     jgen.writeEndObject();
   }
 }

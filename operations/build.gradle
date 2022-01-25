@@ -1,7 +1,7 @@
-apply plugin: 'maven-publish'
+apply plugin: 'maven'
 
 dependencies {
-    implementation project(':resources')
-    implementation 'ca.uhn.hapi.fhir:hapi-fhir-base:5.3.0'
-    implementation 'ca.uhn.hapi.fhir:hapi-fhir-structures-r4:5.3.0'
+    compile project(':resources')
+    compile 'ca.uhn.hapi.fhir:hapi-fhir-base:5.3.0'
+    compile 'ca.uhn.hapi.fhir:hapi-fhir-structures-r4:5.3.0'
 }

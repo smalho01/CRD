@@ -8,7 +8,6 @@ import java.util.List;
 public class CoverageRequirementRuleCriteria {
 
   private String payor;
-  private String payorId;
   private String code;
   private String codeSystem;
   private String fhirVersion;
@@ -46,13 +45,6 @@ public class CoverageRequirementRuleCriteria {
     return this;
   }
 
-  public String getPayorId() { return payorId; }
-
-  public CoverageRequirementRuleCriteria setPayorId(String payorId) {
-    this.payorId = payorId;
-    return this;
-  }
-
   public String getFhirVersion() { return fhirVersion; }
 
   public CoverageRequirementRuleCriteria setFhirVersion(String fhirVersion) {
@@ -79,9 +71,8 @@ public class CoverageRequirementRuleCriteria {
       String codeSystem = coding.getSystem();
       for (org.hl7.fhir.r4.model.Organization payor : payors) {
         String payorName = payor.getName();
-        String payorId = payor.getId();
         CoverageRequirementRuleCriteria criteria = new CoverageRequirementRuleCriteria();
-        criteria.setPayor(payorName).setPayorId(payorId).setCodeSystem(codeSystem).setCode(code).setFhirVersion("R4");
+        criteria.setPayor(payorName).setCodeSystem(codeSystem).setCode(code).setFhirVersion("R4");
         criteriaList.add(criteria);
       }
     }

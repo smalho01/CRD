@@ -21,7 +21,6 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.util.List;
-import java.util.Locale;
 
 public abstract class CommonFileStore implements FileStore {
 
@@ -102,10 +101,10 @@ public abstract class CommonFileStore implements FileStore {
   }
 
   public FileResource getFhirResourceByTopic(String fhirVersion, String resourceType, String name, String baseUrl) {
-    FhirResourceCriteria criteria = new FhirResourceCriteria();
-    criteria.setFhirVersion(fhirVersion).setResourceType(resourceType.toLowerCase()).setName(name);
-    logger.info("CommonFileStore::getFhirResourceByTopic(): " + criteria.toString());
+    logger.info("CommonFileStore::getFhirResourceByTopic(): " + fhirVersion + "/" + resourceType + "/" + name);
 
+    FhirResourceCriteria criteria = new FhirResourceCriteria();
+    criteria.setFhirVersion(fhirVersion).setResourceType(resourceType).setName(name);
     List<FhirResource> fhirResourceList = fhirResources.findByName(criteria);
     FileResource resource = readFhirResourceFromFiles(fhirResourceList, fhirVersion, baseUrl);
 
@@ -126,13 +125,12 @@ public abstract class CommonFileStore implements FileStore {
 
   public FileResource getFhirResourceById(String fhirVersion, String resourceType, String id, String baseUrl,
       boolean isRoot) {
-    FhirResourceCriteria criteria = new FhirResourceCriteria();
-    criteria.setFhirVersion(fhirVersion).setResourceType(resourceType.toLowerCase()).setId(id);
-    logger.info("CommonFileStore::getFhirResourceById(): " + criteria.toString());
+    logger.info("CommonFileStore::getFhirResourceById(): " + fhirVersion + "/" + resourceType + "/" + id);
 
+    FhirResourceCriteria criteria = new FhirResourceCriteria();
+    criteria.setFhirVersion(fhirVersion).setResourceType(resourceType).setId(id);
     List<FhirResource> fhirResourceList = fhirResources.findById(criteria);
     FileResource resource = readFhirResourceFromFiles(fhirResourceList, fhirVersion, baseUrl);
-    System.out.println("Resource Pulled: " + resource + "-" + resource.getFilename());
 
     if ((resource != null) && fhirVersion.equalsIgnoreCase("r4")) {
 
@@ -155,10 +153,10 @@ public abstract class CommonFileStore implements FileStore {
   }
 
   public FileResource getFhirResourceByUrl(String fhirVersion, String resourceType, String url, String baseUrl) {
-    FhirResourceCriteria criteria = new FhirResourceCriteria();
-    criteria.setFhirVersion(fhirVersion).setResourceType(resourceType.toLowerCase()).setUrl(url);
-    logger.info("CommonFileStore::getFhirResourceByUrl(): " + criteria.toString());
+    logger.info("CommonFileStore::getFhirResourceByUrl(): " + fhirVersion + "/" + resourceType + "/" + url);
 
+    FhirResourceCriteria criteria = new FhirResourceCriteria();
+    criteria.setFhirVersion(fhirVersion).setResourceType(resourceType).setUrl(url);
     List<FhirResource> fhirResourceList = fhirResources.findByUrl(criteria);
     FileResource resource = readFhirResourceFromFiles(fhirResourceList, fhirVersion, baseUrl);
 

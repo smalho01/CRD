@@ -15,7 +15,6 @@ public class Action {
   private TypeEnum type = null;
   private String description = null;
   private IBaseResource resource = null;
-  private String resourceId = null;
 
   private FhirComponentsT fhirComponents;
 
@@ -27,7 +26,9 @@ public class Action {
     this.type = type;
   }
 
-  public String getDescription() { return description; }
+  public String getDescription() {
+    return description;
+  }
 
   public void setDescription(String description) {
     this.description = description;
@@ -35,14 +36,7 @@ public class Action {
 
   public IBaseResource getResource() { return resource; }
 
-  public void setResource(IBaseResource resource) {
-    this.resource = resource;
-    setResourceId(resource.fhirType() + "/" + resource.getIdElement().getIdPart());
-  }
-
-  public String getResourceId() { return resourceId; }
-
-  public void setResourceId(String resourceId) { this.resourceId = resourceId; }
+  public void setResource(IBaseResource resource) { this.resource = resource; }
 
   public FhirComponentsT getFhirComponents() {
     return this.fhirComponents;
